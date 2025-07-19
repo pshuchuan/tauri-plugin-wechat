@@ -15,7 +15,7 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
   api: PluginApi<R, C>,
 ) -> crate::Result<Wechat<R>> {
   #[cfg(target_os = "android")]
-  let handle = api.register_android_plugin("", "ExamplePlugin")?;
+  let handle = api.register_android_plugin("com.tauriplugins.wechat", "ExamplePlugin")?;
   #[cfg(target_os = "ios")]
   let handle = api.register_ios_plugin(init_plugin_wechat)?;
   Ok(Wechat(handle))
@@ -31,4 +31,19 @@ impl<R: Runtime> Wechat<R> {
       .run_mobile_plugin("ping", payload)
       .map_err(Into::into)
   }
+}
+
+pub struct Sdk{
+  APP_ID:String,
+  IWXAPI:String,
+  state:String
+}
+
+impl Sdk {
+  pub fn new(appid:String,scope:String) -> Self {
+
+  }
+
+
+
 }
